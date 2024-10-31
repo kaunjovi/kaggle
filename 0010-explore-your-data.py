@@ -3,6 +3,7 @@
 
 import pandas as pd 
 from sklearn.tree import DecisionTreeRegressor
+from sklearn.metrics import mean_absolute_error
 
 if __name__ == "__main__" : 
     print(f"Pandas version {pd.__version__}")
@@ -45,6 +46,12 @@ if __name__ == "__main__" :
 
     print("Making predictions for the following 5 houses:")
     print(X.head())
+    prediction = melbourne_model.predict(X.head())
     print("The predictions are")
-    print(melbourne_model.predict(X.head()))
+    print(prediction)
+
+    # How good are the predictions 
+    print(f"Mean Absolute Error [{ mean_absolute_error(prediction, y.head())}]")
+
+    
 

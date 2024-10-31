@@ -1,6 +1,7 @@
 # https://www.kaggle.com/code/kaunjovikaggle/exercise-your-first-machine-learning-model/edit
 
 from sklearn.tree import DecisionTreeRegressor
+from sklearn.metrics import mean_absolute_error
 import pandas as pd 
 
 def investigate_data (data, name = "data" ) : 
@@ -43,5 +44,6 @@ if __name__ == "__main__" :
     predictions = iowa_model.predict(X) 
 
     # compare actual to predictions. 
-    print(f"Ground truth \n{y.head()} \n{y.tail()}")
-    print(f"Predictions {predictions}")
+    # print(f"Ground truth \n{y.head()} \n{y.tail()}")
+    # print(f"Predictions {predictions}")
+    print(f"Mean absolute error { mean_absolute_error(y, predictions)}")
