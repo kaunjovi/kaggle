@@ -2,6 +2,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error
 from sklearn.ensemble import RandomForestRegressor
+from sklearn.impute import SimpleImputer
 
 def score_prediction_accuracy(X_train, X_valid, y_train, y_valid) : 
     rt_model = RandomForestRegressor( n_estimators= 10, random_state=0)
@@ -76,4 +77,19 @@ if __name__ == "__main__" :
     X3_train, X3_valid, y3_train, y3_valid = train_test_split(X3, y3, test_size=0.2, train_size= 0.8, random_state=0)
     print(f"MAE = [{ score_prediction_accuracy(X3_train, X3_valid, y3_train, y3_valid)}]")
 
+    # Approach 4 
+    # use simple imputer 
+    # MAE = 178,166 -- best till now 
+    simpleImputer = SimpleImputer() 
+    # Calculate the imputed values
+    imputed_X_train = pd.DataFrame( simpleImputer.fit_transform(X_train))
+    imputed_X_valid = pd.DataFrame ( simpleImputer.transform(X_valid))
+    # Fix the names of the columns 
+    imputed_X_train.columns = X_train.columns
+    imputed_X_valid.columns = X_valid.columns
+    print(f"Approach #4 : Imputed MAE = [{ score_prediction_accuracy(imputed_X_train, imputed_X_valid, y_train, y_valid)}]")
+
     
+
+
+
