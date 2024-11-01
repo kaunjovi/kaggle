@@ -58,8 +58,20 @@ def score_prediction_accuracy_imputation( melb_data ) :
     score_prediction_accuracy(imputed_X_train, imputed_X_valid, y_train, y_valid, "Approach # 4 : Imputed MAE = ")
 
 def exploratory_data_analysis (melb_data) : 
-    print(f"Shape = [{ melb_data.shape}]")
+    
     # Shape = [(13580, 21)]
+    print(f"Shape = [{ melb_data.shape}]")
+
+    # missing_val_count_by_column = melb_data.isnull().sum() 
+    missing_val_count_by_column = melb_data.isnull().sum()
+    # print(f"Missing value count by column \n{missing_val_count_by_column}")
+    print(f"Name of columns with missing values \n{ missing_val_count_by_column[missing_val_count_by_column > 0]}")
+    # Name of columns with missing values 
+    # Car               62
+    # BuildingArea    6450
+    # YearBuilt       5375
+    # CouncilArea     1369
+
 
     # print(f"###Columns with datatypes \n{ melb_data.dtypes}")
     # ###Columns with datatypes 
