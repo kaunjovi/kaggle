@@ -57,20 +57,29 @@ def score_prediction_accuracy_imputation( melb_data ) :
     # print(f"Approach # 4 : Imputed MAE = [{ score_prediction_accuracy(imputed_X_train, imputed_X_valid, y_train, y_valid)}]")
     score_prediction_accuracy(imputed_X_train, imputed_X_valid, y_train, y_valid, "Approach # 4 : Imputed MAE = ")
 
+def column_names_with_missing_values ( data )  : 
+    column_names_with_missing_values = [col for col in data.columns if data[col].isnull().any()]
+
+    return column_names_with_missing_values
+
 def exploratory_data_analysis (melb_data) : 
     
     # Shape = [(13580, 21)]
     print(f"Shape = [{ melb_data.shape}]")
 
+    print(f"Names of columns with missing data:")
+    print(f"{column_names_with_missing_values (melb_data)}")
+
     # missing_val_count_by_column = melb_data.isnull().sum() 
     missing_val_count_by_column = melb_data.isnull().sum()
     # print(f"Missing value count by column \n{missing_val_count_by_column}")
-    print(f"Name of columns with missing values \n{ missing_val_count_by_column[missing_val_count_by_column > 0]}")
+    print(f"Columns with count of missing values : \n{ missing_val_count_by_column[missing_val_count_by_column > 0]}")
     # Name of columns with missing values 
     # Car               62
     # BuildingArea    6450
     # YearBuilt       5375
     # CouncilArea     1369
+
 
 
     # print(f"###Columns with datatypes \n{ melb_data.dtypes}")
@@ -149,3 +158,10 @@ if __name__ == "__main__" :
     score_prediction_accuracy_imputation( melb_data )
     score_prediction_accuracy_imputation_plus(melb_data) 
 
+
+# Panda version [2.2.3]
+# Approach # 1 : With missing data. MAE =  180484.56167683567
+# Approach # 2 : Dropped rows MAE =  192451.0952956989
+# Approach # 3 : Dropped columns MAE =  183550.22137772635
+# Approach # 4 : Imputed MAE =  178166.46269899711
+# Approach # 5 : Imputer plus. MAE = 178927.503183954
