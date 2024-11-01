@@ -26,7 +26,7 @@ if __name__ == "__main__" :
     # Describe the data
     # print(f"{melbourne_data.describe()}")
 
-    # There are some missing data. Drop them 
+    # There are some missing data. Drop the rows with missing values. 
     melbourne_data = melbourne_data.dropna(axis= 0 )
 
     # Describe again 
